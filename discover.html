@@ -56,6 +56,158 @@
             </div>
         </div>
     </div>
+    <div class="comments">
+        <div class="comments-hint text-center">
+            <span>焦点评论</span>
+        </div>
+        <div class="comments-list">
+            <ul>
+                <li class="comment flex">
+                    <img src="./images/avatar.png" class="avatar" />
+                    <div class="comment-warp flex col">
+                        <div class="comment-header flex sb">
+                            <span class="author">司马光</span>
+                            <span class="publish_time">2016-07-19 13:40</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>你看课程吗？我就看的[微笑]，很好的课程</p>
+                        </div>
+                        <div class="images flex sa">
+                            <div><img
+                                    src="http://cdn.yihuzhijia.cn/t01393aabd2c961d7a3.jpg"/>
+                            </div>
+                            <div><img
+                                    src="http://cdn.yihuzhijia.cn/t01393aabd2c961d7a3.jpg"/>
+                            </div>
+                            <div><img
+                                    src="http://cdn.yihuzhijia.cn/t01393aabd2c961d7a3.jpg"/>
+                            </div>
+                        </div>
+                        <div class="comment-operation flex jc">
+                            <a class="up">999</a>
+                            <a class="comment">999</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="comment flex">
+                    <img src="./images/avatar.png" class="avatar" />
+                    <div class="comment-warp flex col">
+                        <div class="comment-header flex sb">
+                            <span class="author">司马光</span>
+                            <span class="publish_time">2016-07-19 13:40</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>你看课程吗？我就看的[流泪]，很好的课程</p>
+                            <div class="reference">
+                                <span>@司依云：</span>你看课程吗？我就看的[流泪]，很好的课程
+                            </div>
+                        </div>
+
+                        <div class="comment-operation flex jc">
+                            <a class="up">999</a>
+                            <a class="comment">999</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="comment flex">
+                    <img src="./images/avatar.png" class="avatar" />
+                    <div class="comment-warp flex col last">
+                        <div class="comment-header flex sb">
+                            <span class="author">司马光</span>
+                            <span class="publish_time ">2016-07-19 13:40</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>你看课程吗？我就看的[流泪]，很好的课程</p>
+                        </div>
+                        <div class="comment-operation flex jc">
+                            <a class="up">999</a>
+                            <a class="comment">999</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="recommends">
+        <div class="hint text-center">
+            <span>推门推荐</span>
+        </div>
+
+        <div class="recommend">
+
+            <div class="header">
+                <h1>俄对美有威胁 特朗普却扬言要搞好美俄关系</h1>
+
+                <div class="gray">2016-09-27 12:30</div>
+            </div>
+
+            <div class="content-warp">
+                <div class="content">
+                    <img class="pure-img"
+                         src="http://cdn.yihuzhijia.cn/t01393aabd2c961d7a3.jpg"/>
+
+                    <p>七幕君不邀自答，从我最擅长的音乐剧领域下笔，给大家分享几个“完美犯罪”的“真”实案例。<span class="pink">进入阅读</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommend spacer">
+
+            <div class="header">
+                <h1>俄对美有威胁 特朗普却扬言要搞好美俄关系</h1>
+
+                <div class="gray">2016-09-27 12:30</div>
+            </div>
+
+            <div class="content-warp">
+                <div class="content">
+                    <img class="pure-img"
+                         src="http://cdn.yihuzhijia.cn/t01393aabd2c961d7a3.jpg"/>
+
+                    <p>七幕君不邀自答，从我最擅长的音乐剧领域下笔，给大家分享几个“完美犯罪”的“真”实案例。</p>
+                </div>
+                <div class="text-center"><button>点击进入</button></div>
+            </div>
+        </div>
+    </div>
 </section>
+<script type="text/javascript" src="./js/zepto.min.js"></script>
+<script type="text/javascript" src="./js/emoji.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.comment-content').each(function (t, e) {
+            $(e).html(replace_em($(e).html()))
+        })
+    });
+
+    function replace_em(str) {
+        var res = str.match(/\[(\S{2})]/g);
+        for (var i = 0; i < res.length; i++) {
+            for (var j = 0; j < emojis.length; j++) {
+                if (emojis[j] == res[i]) {
+                    str = str.replace(res[i], '<img src="./images/emoji/emoji' + j + '.png" class="emoji"/>')
+                }
+            }
+        }
+        return str;
+    }
+
+    function productBtnClick(id, url){
+        window.operation.product(id, url);
+    }
+
+
+    function commentBtnClick(id){
+//        if(window.share_comment != undefined)
+        window.operation.comment(id);
+    }
+
+    function shareBtnClick(id, url, title, thumbnail, summary){
+//        if(window.share_comment != undefined)
+        window.operation.share(id, url, title, thumbnail, summary);
+    }
+</script>
 </body>
 </html>

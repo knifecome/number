@@ -106,6 +106,38 @@
         </div>
     </div>
 </section>
+<script type="text/javascript" src="./js/zepto.min.js"></script>
+<script type="text/javascript" src="./js/emoji.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.comment-content').each(function(t, e){
+            $(e).html(replace_em($(e).html()))
+        })
+    })
 
+    function replace_em(str){
+        var res = str.match(/\[(\S{2})]/g);
+        for(var i=0; i<res.length; i++){
+            for(var j = 0; j<emojis.length; j++){
+                if(emojis[j] == res[i]){
+                    str = str.replace(res[i],'<img src="./images/emoji/emoji'+j+'.png" class="emoji"/>')
+                }
+            }
+        }
+        return str;
+    }
+
+    function commentBtnClick(id){
+//        if(window.share_comment != undefined)
+        window.share_comment.comment(id);
+    }
+
+    function shareBtnClick(id, url, title, thumbnail, summary){
+//        if(window.share_comment != undefined)
+        window.share_comment.share(id, url, title, thumbnail, summary);
+    }
+
+
+</script>
 </body>
 </html>
